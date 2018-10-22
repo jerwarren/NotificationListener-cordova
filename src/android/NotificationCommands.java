@@ -55,7 +55,7 @@ public class NotificationCommands extends CordovaPlugin {
       callbackContext.sendPluginResult(result);
     }
 
-    public static void notifyListener(StatusBarNotification n){
+    public static void notifyListener(StatusBarNotification n, String notificationType){
       if (listener == null) {
         Log.e(TAG, "Must define listener first. Call notificationListener.listen(success,error) first");
         return;
@@ -63,6 +63,8 @@ public class NotificationCommands extends CordovaPlugin {
       try  {
 
         JSONObject json = parse(n);
+
+        json.put("notificationType", notificationType);
 
         PluginResult result = new PluginResult(PluginResult.Status.OK, json);
 
