@@ -80,11 +80,6 @@ public class NotificationService extends NotificationListenerService {
         return false;
     }
 
-    @Override
-    public void onNotificationRemoved(StatusBarNotification sbn) {
-        //debugNotification(sbn);
-    }
-
     private void addNotification(StatusBarNotification msg){
         notifications.add(msg);
     }
