@@ -71,7 +71,7 @@ public class NotificationService extends NotificationListenerService {
 
         if (pk.equals("android") ||  ignorePkg(pk) || sbn.isOngoing()) Log.d(TAG, "Ignore notification from pkg " + pk);
         else {
-            NotificationCommands.notifyListener(sbn);
+            NotificationCommands.notifyListener(sbn, "POSTED");
             addNotification(sbn);
         }
     }
