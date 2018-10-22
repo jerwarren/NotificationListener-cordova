@@ -40,6 +40,26 @@ public class NotificationService extends NotificationListenerService {
         Log.i(TAG, "onDestroy");
         enabled = false;
     }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return super.onBind(intent);
+    }
+  
+    @Override
+    public void onNotificationRemoved(StatusBarNotification sbn){
+        Log.d(TAG, "notification package name " + sbn.getPackageName());
+
+        String pk = sbn.getPackageName();
+
+        if (pk.equals("android") ||  ignorePkg(pk) || sbn.isOngoing()) Log.d(TAG, "Ignore notification from pkg " + pk);
+        else {
+            NotificationCommands.notifyListener(sbn);
+            addNotification(sbn);
+        }
+    }
+
+
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
         //Do not send notifications from this app (can cause an infinite loop)
