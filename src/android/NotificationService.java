@@ -55,7 +55,7 @@ public class NotificationService extends NotificationListenerService {
         if (pk.equals("android") ||  ignorePkg(pk) || sbn.isOngoing()) Log.d(TAG, "Ignore notification from pkg " + pk);
         else {
             NotificationCommands.notifyListener(sbn, "REMOVED");
-            addNotification(sbn);
+            removeNotification(sbn);
         }
     }
 
@@ -69,7 +69,7 @@ public class NotificationService extends NotificationListenerService {
 
         if (pk.equals("android") ||  ignorePkg(pk) || sbn.isOngoing()) Log.d(TAG, "Ignore notification from pkg " + pk);
         else {
-            NotificationCommands.notifyListener(sbn, "POSTED");
+            NotificationCommands.notifyListener(sbn);
             addNotification(sbn);
         }
     }
@@ -89,13 +89,13 @@ public class NotificationService extends NotificationListenerService {
 
     public static void removeAll(){
         try {
-            for (StatusBarNotification n : notifications) remove(n);
+            for (StatusBarNotification n : notifications) removeNotification(n);
             notifications.clear();
         } catch (Exception e){
             Log.e(TAG, "Unable to remove notifications",e);
         }
     }
-    private static void remove(StatusBarNotification n){
+    private static void removeNotification(StatusBarNotification n){
         String ns = Context.NOTIFICATION_SERVICE;
         NotificationManager nMgr = (NotificationManager) context.getApplicationContext().getSystemService(ns);
 
