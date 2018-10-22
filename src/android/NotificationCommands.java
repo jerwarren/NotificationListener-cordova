@@ -85,7 +85,7 @@ public class NotificationCommands extends CordovaPlugin {
 
         json.put("title", getExtra(extras, "android.title"));
         json.put("package", n.getPackageName());
-        json.put("notifID", n.getId());
+        json.put("notificationID", n.getId());
         json.put("text", getExtra(extras,"android.text"));
         json.put("textLines", getExtraLines(extras, "android.textLines"));
 
