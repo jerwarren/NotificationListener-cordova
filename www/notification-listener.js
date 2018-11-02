@@ -15,10 +15,16 @@
 "use strict";
 
 module.exports = {
-
     // value must be an ArrayBuffer
     listen: function (success, failure) {
-        console.log("Calling cordova listen method");
         cordova.exec(success, failure, 'NotificationListener', 'listen', []);
+    },
+
+    hasNotificationAccess: function (success, failure) {
+        cordova.exec(success, failure, 'NotificationListener', 'hasNotificationAccess', []);
+    },
+
+    requestNotificationAccess: function (success, failure) {
+        cordova.exec(success, failure, 'NotificationListener', 'requestNotificationAccess', []);
     }
 };
