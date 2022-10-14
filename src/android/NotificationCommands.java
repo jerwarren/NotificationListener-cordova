@@ -22,6 +22,7 @@ import android.util.Base64;
 import android.app.Notification;
 import android.graphics.drawable.Icon;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.BitmapFactory;
 
 public class NotificationCommands extends CordovaPlugin {
 
@@ -166,8 +167,7 @@ public class NotificationCommands extends CordovaPlugin {
     Icon largeIcon = notification.getLargeIcon();
 
     if (largeIcon != null){
-
-      Bitmap bigIcon = (Bitmap) extras.get(Notification.EXTRA_LARGE_ICON);
+      Bitmap bigIcon = BitmapFactory.decodeResource(getResources(), extras.get(Notification.EXTRA_LARGE_ICON));
       ByteArrayOutputStream bos = new ByteArrayOutputStream();
       bigIcon.compress(Bitmap.CompressFormat.PNG, 100, bos);
       byte[] byte_arr = bos.toByteArray();
