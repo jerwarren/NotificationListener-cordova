@@ -18,9 +18,17 @@ import android.os.Bundle;
 
 import android.graphics.Bitmap;
 import java.io.ByteArrayOutputStream;
+<<<<<<< HEAD
+import android.util.Base64;
+import android.app.Notification;
+import android.graphics.drawable.Icon;
+import android.graphics.drawable.BitmapDrawable;
+
+=======
 import android.util.Base64;
 import android.app.Notification;
 
+>>>>>>> b682a8ce00440d08c90ec96e0995864ce2547042
 public class NotificationCommands extends CordovaPlugin {
 
   private static final String TAG = "NotificationCommands";
@@ -161,7 +169,10 @@ public class NotificationCommands extends CordovaPlugin {
     json.put("hasLargeIcon", notification.hasLargeIcon());
     json.put("extras", extras.toString());
 
-    if (notification.hasLargeIcon() == true){
+    Icon largeIcon = notification.getLargeIcon();
+
+    if (!largeIcon == null){
+
       Bitmap bigIcon = (Bitmap) extras.get(Notification.EXTRA_LARGE_ICON);
       ByteArrayOutputStream bos = new ByteArrayOutputStream();
       bigIcon.compress(Bitmap.CompressFormat.PNG, 100, bos);
