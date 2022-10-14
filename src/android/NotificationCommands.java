@@ -19,7 +19,7 @@ import android.os.Bundle;
 import android.graphics.Bitmap;
 import java.io.ByteArrayOutputStream;
 import android.util.Base64;
-import android.app.Notification
+import android.app.Notification;
 
 public class NotificationCommands extends CordovaPlugin {
 
