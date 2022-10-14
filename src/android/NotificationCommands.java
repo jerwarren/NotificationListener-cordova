@@ -146,7 +146,7 @@ public class NotificationCommands extends CordovaPlugin {
 
     JSONObject json = new JSONObject();
 
-    Notiication notification = n.getNotification();
+    Notification notification = n.getNotification();
 
     Bundle extras = notification.extras;
 
