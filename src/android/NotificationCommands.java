@@ -16,6 +16,9 @@ import org.apache.cordova.PluginResult;
 import android.service.notification.StatusBarNotification;
 import android.os.Bundle;
 
+import java.io.ByteArrayOutputStream;
+import android.graphics.Bitmap;
+
 public class NotificationCommands extends CordovaPlugin {
 
   private static final String TAG = "NotificationCommands";
@@ -150,8 +153,18 @@ public class NotificationCommands extends CordovaPlugin {
     json.put("postTime", n.getPostTime());
     json.put("text", getExtra(extras, "android.text"));
     json.put("textLines", getExtraLines(extras, "android.textLines"));
-    json.put("bigText", getExtraLines(extras, "android.textLines"));
+    json.put("bigText", getExtraLines(extras, "android.bigText"));
     json.put("extras", extras.toString());
+
+    if (extras.largeIcon !== null){
+      Bitmap bigIcon = (Bitmap) extras.get(Notification.EXTRA_LARGE_ICON);
+      ByteArrayOutputStream bos = new ByteArrayOutputStream();
+      BitmapData.compress(Bitmap.CompressFormat.PNG, 100, bos);
+      byte[] byte_arr = bos.toByteArray();
+
+      String file = Base64.encodeToString(byte_arr, Base64.DEFAULT);
+      json.put("largeIcon", extras.toString());
+    }
 
     return json;
   }
