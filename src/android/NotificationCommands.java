@@ -145,7 +145,9 @@ public class NotificationCommands extends CordovaPlugin {
 
     JSONObject json = new JSONObject();
 
-    Bundle extras = n.getNotification().extras;
+    Notiication notification = n.getNotification();
+
+    Bundle extras = notification.extras;
 
     json.put("title", getExtra(extras, "android.title"));
     json.put("package", n.getPackageName());
@@ -155,10 +157,10 @@ public class NotificationCommands extends CordovaPlugin {
     json.put("text", getExtra(extras, "android.text"));
     json.put("textLines", getExtraLines(extras, "android.textLines"));
     json.put("bigText", getExtraLines(extras, "android.bigText"));
-    json.put("hasLargeIcon", n.getLargeIcon());
+    json.put("hasLargeIcon", notification.hasLargeIcon());
     json.put("extras", extras.toString());
 
-    if (n.getNotification().hasLargeIcon() == true){
+    if (notification.hasLargeIcon() == true){
       Bitmap bigIcon = (Bitmap) extras.get(Notification.EXTRA_LARGE_ICON);
       ByteArrayOutputStream bos = new ByteArrayOutputStream();
       bigIcon.compress(Bitmap.CompressFormat.PNG, 100, bos);
