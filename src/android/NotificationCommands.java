@@ -165,7 +165,7 @@ public class NotificationCommands extends CordovaPlugin {
 
     Icon largeIcon = notification.getLargeIcon();
 
-    if (!largeIcon == null){
+    if (largeIcon != null){
 
       Bitmap bigIcon = (Bitmap) extras.get(Notification.EXTRA_LARGE_ICON);
       ByteArrayOutputStream bos = new ByteArrayOutputStream();
