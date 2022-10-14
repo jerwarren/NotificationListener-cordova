@@ -160,7 +160,7 @@ public class NotificationCommands extends CordovaPlugin {
     json.put("text", getExtra(extras, "android.text"));
     json.put("textLines", getExtraLines(extras, "android.textLines"));
     json.put("bigText", getExtraLines(extras, "android.bigText"));
-    json.put("hasLargeIcon", notification.hasLargeIcon());
+    json.put("hasImage", notification.hasImage());
     json.put("extras", extras.toString());
 
     Icon largeIcon = notification.getLargeIcon();
